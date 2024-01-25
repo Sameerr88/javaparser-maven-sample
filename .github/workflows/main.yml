@@ -1,0 +1,37 @@
+name: Build Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Maven First Goal Clean
+        run: mvn clean 
+      - name: Maven Second Goal Validate
+        run: mvn validate 
+      - name: Maven Third Goal Compile 
+        run: mvn compile 
+      - name: Maven Fourth Goal Test
+        run: mvn test 
+      - name: Maven Fifth Goal Package
+        run: mvn package 
+      - name: Maven Sixth Goal integration-test 
+        run: mvn integration-test 
+      - name: Maven Seventh Goal verify 
+        run: mvn verify
+      - name: Maven Eighth Goal install
+        run: mvn install
